@@ -27,10 +27,12 @@ public class StatisticsCalculator {
         if (values.isEmpty())
             throw new IllegalArgumentException("The list cannot be empty.");
 
-        if (values.size() <= 0)
-            throw new IllegalArgumentException("Values must be positive for geometric mean.");
+        for (double v : values)
+            if (v <= 0)
+                throw new IllegalArgumentException("Values must be positive for geometric mean.");
 
         double product = 1.0;
+        
         for (double i : values)
             product *= i;
 
@@ -38,7 +40,7 @@ public class StatisticsCalculator {
     }
 
     public double variance(List<Double> values) {
-        
+
         double mean = arithmeticMean(values);
         
         double variance  = 0;
