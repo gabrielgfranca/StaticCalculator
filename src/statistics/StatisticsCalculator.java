@@ -5,17 +5,15 @@ import java.util.List;
 public class StatisticsCalculator {
 
     public double sum(List<Double> values){
-        
         double sum = 0;
 
         for (double i : values)
-            sum += values.indexOf(i);
+            sum += i;
 
         return sum;
     }
 
     public double arithmeticMean(List<Double> values) {
-        
         if (values.isEmpty())
             throw new IllegalArgumentException("The list cannot be empty.");
 
@@ -23,7 +21,6 @@ public class StatisticsCalculator {
     }
 
     public double geometricMean(List<Double> values) {
-        
         if (values.isEmpty())
             throw new IllegalArgumentException("The list cannot be empty.");
 
@@ -40,25 +37,32 @@ public class StatisticsCalculator {
     }
 
     public double variance(List<Double> values) {
-
         double mean = arithmeticMean(values);
-        
         double variance  = 0;
 
-        for (double i : values) {
+        for (double i : values)
             variance += (i - mean) * (i - mean);
-        }
-        
         variance /= (values.size() - 1);
 
         return variance;
     }
 
-    public double standardDeviation(List<Double> values) {
-        return 1;
+    public double standardDeviation(List<Double> values) {        
+        return Math.sqrt(variance(values));
     }
 
-    public int range(List<Double> values) {
-        return 1;
+    public double range(List<Double> values) {
+        if (values == null || values.isEmpty()) 
+            return 0;
+        
+        double min = values.getFirst();
+        double max = values.getLast();
+
+        for (double i : values) {
+            if (i > max) max = i;
+            if (i < min) min = i;
+        }
+
+        return max - min;
     }
 }
