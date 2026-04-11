@@ -14,6 +14,6 @@ Development of the Statistical Calculator function
 - [x] sum
 - [x] arithmeticMean
 - [x] sumgeometricMean
-- [ ] standardDeviation
-- [ ] range
+- [x] standardDeviation
+- [x] range
 
