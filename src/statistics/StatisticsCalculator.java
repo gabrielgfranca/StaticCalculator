@@ -5,12 +5,9 @@ import java.util.List;
 public class StatisticsCalculator {
 
     public double sum(List<Double> values){
-        double sum = 0;
-
-        for (double i : values)
-            sum += i;
-
-        return sum;
+        return values.stream()
+            .mapToDouble(Double::doubleValue)
+            .sum();
     }
 
     public double arithmeticMean(List<Double> values) {
@@ -23,28 +20,23 @@ public class StatisticsCalculator {
     public double geometricMean(List<Double> values) {
         if (values.isEmpty())
             throw new IllegalArgumentException("The list cannot be empty.");
-
-        for (double v : values)
-            if (v <= 0)
-                throw new IllegalArgumentException("Values must be positive for geometric mean.");
-
-        double product = 1.0;
         
-        for (double i : values)
-            product *= i;
+        if (values.stream().anyMatch(v -> v <= 0))
+            throw new IllegalArgumentException("Values must be positive for geometric mean.");
 
+        double product = values.stream()
+            .mapToDouble(Double::doubleValue)
+            .reduce(1.0, (a, b) -> a * b);
+        
         return Math.pow(product, 1.0 / values.size());
     }
 
     public double variance(List<Double> values) {
         double mean = arithmeticMean(values);
-        double variance  = 0;
 
-        for (double i : values)
-            variance += (i - mean) * (i - mean);
-        variance /= (values.size() - 1);
-
-        return variance;
+        return values.stream()
+            .mapToDouble(v -> (v - mean) * (v - mean))
+            .sum() / (values.size() - 1);
     }
 
     public double standardDeviation(List<Double> values) {        
