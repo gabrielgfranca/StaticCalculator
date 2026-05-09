@@ -1,4 +1,4 @@
-package generators;
+package com.gabriel.generators;
 
 public abstract class AbstractNumberGenerator implements NumberGenerator {
 

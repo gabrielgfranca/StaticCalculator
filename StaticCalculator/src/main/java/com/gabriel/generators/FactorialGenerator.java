@@ -1,4 +1,4 @@
-package generators;
+package com.gabriel.generators;
 
 import java.util.ArrayList;
 import java.util.List;

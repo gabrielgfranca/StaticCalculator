@@ -1,4 +1,4 @@
-package cli;
+package com.gabriel.cli;
 
 public class Menu {
     

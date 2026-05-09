@@ -1,4 +1,4 @@
-package statistics;
+package com.gabriel.statistics;
 
 import java.util.List;
 
